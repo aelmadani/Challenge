@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Drum kit app: Her kan man spille med trommesæt ved at trykke på ASDFGHJKL.
+     JS kode er embedded i script delen her i filen -->
+
+  <!-- Først defineres diver for hver tastatur knap
+          Hver div indeholder "kbd" bogstav og "span" lydbeskriveles-->
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <!--Lydfilerne indsættes her i html delen uden audio controlers-->
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+  <script>
+    // Først skal der lyttes til keydown event
+    document.addEventListener('keydown', function (event) {
+      const keyNumber = event.keyCode;
+      // Hvis der trykkes på A, S, D, F, G, H, J, k, eller L
+      if (keyNumber == 65 || keyNumber == 83 || keyNumber == 68 ||
+        keyNumber == 70 || keyNumber == 71 || keyNumber == 72 ||
+        keyNumber == 73 || keyNumber == 74 || keyNumber == 75 ||
+        keyNumber == 76) {
+
+        // Her finder vi den lydfil som hører til tastatur eventet og afspiller den
+        var x = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+        x.currentTime = 0; // rewind the audio
+        x.play();
+
+        // Her finder vi den div der hører til tastatur eventet
+        var y = document.querySelector(`div[data-key="${event.keyCode}"]`);
+        y.classList.add("playing"); // tilføjer en class til div vha .classList.add
+
+        // Når keyup eventet er udløst (dvs når ingen tastaturknap er aktiv), så fjernes playing class fra div
+        document.addEventListener('keyup', function (event) {
+          var z = document.querySelector(`div[data-key="${event.keyCode}"]`);
+          z.classList.remove("playing");
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

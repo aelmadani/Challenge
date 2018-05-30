@@ -1,0 +1,38 @@
+
+:root {
+  --spacing: 10px;
+  --blur: 0px;
+  --bcolor: red;
+}
+
+
+html {
+    font-size: 15px;
+    background-color: rgb(50, 50, 87);
+    color: whitesmoke;
+    font-family: sans-serif;
+}
+  
+h2 {
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+label {
+  font-size: 1.6rem;
+  padding: 0.5rem;
+}
+
+
+img {
+  margin: 2rem;
+  width: 80%;
+  padding: var(--spacing);
+  background: var(--bcolor);
+  filter: blur(var(--blur));
+}
+
+#JS {
+  color: var(--bcolor);
+} 

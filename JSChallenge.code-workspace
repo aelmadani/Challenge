@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "01 Drum Kit"
+		},
+		{
+			"path": "02 Watch"
+		},
+		{
+			"path": "03 CSS variables"
+		},
+		{
+			"path": "04 Array Cardio 1"
+		},
+		{
+			"path": "05 Flex Panel Gallery"
+		},
+		{
+			"path": "06 Ajax Type Ahead"
+		},
+		{
+			"path": "07 Array Cardio 2"
+		},
+		{
+			"path": "08 - Fun with HTML5 Canvas"
+		},
+		{
+			"path": "09 - Dev Tools Domination"
+		},
+		{
+			"path": "10 - Hold Shift and Check Checkboxes"
+		},
+		{
+			"path": "11 - Custom Video Player"
+		},
+		{
+			"path": "12 - Key Sequence Detection"
+		},
+		{
+			"path": "13 - Slide in on Scroll"
+		}
+	]
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<!--Ur med timeviser, minutviser og sekundviser ved brug af JS og CSS.
+    Uret bliver formet i CSS, og JS manipulerer CSS til at få gang i uret-->
+<head>
+    <meta charset="UTF-8">
+    <title>Watch</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:900" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">                         <!--Uret-->
+        <div class="circle"></div>                  <!--Skiven-->
+        <div id="hour-hand" class="hand"></div>     <!--Timeviser-->
+        <div id="minute-hand" class="hand"></div>   <!--Minutvier-->
+        <div id="second-hand" class="hand"></div>   <!--Sekundvier-->
+        <div class="clock-digits" id="digits"></div>    <!--Digital ur-->
+    </div>
+
+    <script>
+        window.setInterval(function () { // denne function er timerfunciton, som betyder at alt ind i blokken kører 1 gang hver sekund (1000ms)
+
+            now = new Date(); // klokken nu
+
+            var second = now.getSeconds();              // Sekund variabel
+            var minute = now.getMinutes();              // Minut variabel
+            var hour = now.getHours() + minute / 60;    // Time variabel med decimal
+
+            var degSec = 90 + (second / 60) * 360;      // Vinkel af sekundviser
+            var degMin = 90 + (minute / 60) * 360;      // Vinkel af minutviser
+            var degHour = 90 + (hour / 12) * 360;       // Vinkel af timeviser
+            
+            // Nu hvor vi har de rigtige vinkler på de 3 viere i dette sekund, skal vinklen ændres vha .style 
+            document.getElementById("second-hand").style.transform = `rotate(${degSec}deg)`;
+            document.getElementById("minute-hand").style.transform = `rotate(${degMin}deg)`;
+            document.getElementById("hour-hand").style.transform = `rotate(${degHour}deg)`;
+            document.getElementById("digits").innerHTML = now.getHours() + ":" + minute + ":" + second;
+        }, 1000);
+    </script>
+
+</body>
+
+</html>

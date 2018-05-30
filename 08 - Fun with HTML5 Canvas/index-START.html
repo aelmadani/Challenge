@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+  // creating the "context/ctx", to write on
+  var c = document.getElementById("draw");
+  var ctx = c.getContext("2d");
+
+// resizing the canvas window to have same dimensions as window.
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+
+// styling the "brush"
+ctx.lineJoin = 'round'; 
+ctx.lineCap = 'round'; 
+ctx.lineWidth = 1;
+ctx.globalCompositeOperaion = 'multiply';
+
+
+ 
+// setting drawing variables
+let isDrawing = false; // -> mouse pressing or not
+let lastX = 0; // starting points
+let lastY = 0;
+let hue = 0; // setting hue value og brush
+let direction = true; 
+
+function draw(e) {
+  if(!isDrawing) return; // if isDrawing= false, then stop function.
+  ctx.strokeStyle=`hsl(${hue}, 100%, 50%)`; // setting color 
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);   //starting point 
+  ctx.lineTo(e.offsetX, e.offsetY);   // go to (cursor location)
+  ctx.stroke(); 
+  lastX= e.offsetX // setting new startpoint= cursor location
+  lastY = e.offsetY // setting new startpoint= cursor location
+  hue++; // changing hue gradually
+  if (hue>360){ // when hue hits 360, it will be reset to 0
+    hue=0;
+  }
+
+  // setting linewidth to be variable.
+  if (ctx.lineWidth >100 || ctx.lineWidth <=1){
+    direction = !direction;
+  }
+  if (direction){
+    ctx.lineWidth++;
+  } else {
+    ctx.lineWidth--;
+  }
+
+}
+//if pressing mouse btn while moving mouse: DRAWING
+  c.addEventListener('mousedown', (e)=>{
+    isDrawing = true;
+[lastX, lastY]= [e.offsetX, e.offsetY]; // new starting points
+  }); 
+
+  c.addEventListener('mousemove', draw);
+  
+  
+  c.addEventListener('mouseup',  ()=> isDrawing = false); //if NOT pressing mouse btn while moving mouse: NOT DRAWING
+  c.addEventListener('mouseout',  ()=> isDrawing = false); //if mouse cursor is out of window: NOT DRAWING
+
+
+</script>
+
+
+
+<style>
+  html, body {
+    margin:0;
+  }
+</style>
+
+</body>
+</html>

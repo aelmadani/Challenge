@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS variables</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h2>Update CSS variables with
+    <span id="JS">JS</span>
+  </h2>
+
+  <label for="spacing">Spacing: </label>
+  <input type="range" name="spacing" min="0" max="200" value="10">
+
+  <label for="blur">Blur: </label>
+  <input type="range" name="blur" min="0" max="25" value="0">
+
+  <label for="basecolor">Base Color: </label>
+  <input type="color" name="bcolor" value="#ff0000">
+
+  <img src="horse.jpg" alt="">
+
+  <script>
+
+    // get inputs
+    const inputs = [].slice.call(document.querySelectorAll('input'));
+
+    // Listen for changes in inputs
+    // Changes in color picker
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+    //Changes in range (spacing and blur)
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+    // putting 'px' to the end of spacing and blur and Updating css variables
+    function handleUpdate() {
+      const suffix = (this.name === "bcolor" ? '' : "px");
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+  </script>
+
+
+</body>
+
+</html>
