@@ -38,6 +38,18 @@
 		},
 		{
 			"path": "13 - Slide in on Scroll"
+		},
+		{
+			"path": "14 - JavaScript References VS Copying"
+		},
+		{
+			"path": "15 - LocalStorage"
+		},
+		{
+			"path": "16 - Mouse Move Shadow"
+		},
+		{
+			"path": "17 - Sort Without Articles"
 		}
 	]
 }
