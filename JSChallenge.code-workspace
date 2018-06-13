@@ -50,6 +50,30 @@
 		},
 		{
 			"path": "17 - Sort Without Articles"
+		},
+		{
+			"path": "18 - Adding Up Times with Reduce"
+		},
+		{
+			"path": "19 - Webcam Fun"
+		},
+		{
+			"path": "20 - Speech Detection"
+		},
+		{
+			"path": "21 - Geolocation"
+		},
+		{
+			"path": "22 - Follow Along Link Highlighter"
+		},
+		{
+			"path": "23 - Speech Synthesis"
+		},
+		{
+			"path": "24 - Sticky Nav"
 		}
-	]
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }
