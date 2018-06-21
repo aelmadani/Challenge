@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <form class="search-form">
@@ -14,53 +16,57 @@
       <li>In Copenhagen</li>
     </ul>
   </form>
-<script>
+  <script>
 
-// JSON source with all CPH Street names and other info 
-const endpoint = 'http://dawa.aws.dk/vejstykker?format=json&kommunekode=0101';
+    // JSON source with all CPH Street names and other info 
+    const endpoint = 'http://dawa.aws.dk/vejstykker?format=json&kommunekode=0101';
 
-// Extracting only street namesfrom json and saving it into an array "streets"
-let streets = [];
-let postNr = []; 
-fetch(endpoint)
-  .then(blob => blob.json())
-  .then(data => {
-    for (let n = 0; n < data.length; n++) {
-    streets.push(data[n].navn);
-    }});
+    // Extracting only street namesfrom json and saving it into an array "streets"
+    let streets = [];
+    let postNr = [];
+    fetch(endpoint)
+      .then(blob => blob.json())
+      .then(data => {
+        for (let n = 0; n < data.length; n++) {
+          streets.push(data[n].navn);
+        }
+      });
 
-// finding match between input (WordToMatch) and streets array
-function findMatch(wordToMatch, streets) {
-return streets.filter(str => {
-  const regex = new RegExp(wordToMatch, 'gi');
-  return str.match(regex)
-});
-}
+    // finding match between input (WordToMatch) and streets array
+    function findMatch(wordToMatch, streets) {
+      return streets.filter(str => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return str.match(regex)
+      });
+    }
+
+    // displaying matches
+    function displayMatch() {
+      const matchArray = findMatch(this.value, streets); // finding matches and return them into a new Array
+      console.log(matchArray);
+      
+      //mapping through matches 
+      const html = matchArray.map(str => {
+        const regex = RegExp(this.value, 'gi');
+        
+        const strHl = str.replace(regex, `<span class= "hl">${this.value}</span>`); //replacing normal chars with highlighted
+        return "<li><span class='name'>" + strHl + "</span></li>";
+      }).join('');
+
+      suggestions.innerHTML = html;
+    }
+
+    const searchInput = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    // Listening to seach field input
+    searchInput.addEventListener('change', displayMatch);
+    searchInput.addEventListener('keyup', displayMatch);
 
 
-function displayMatch(){
-const matchArray = findMatch(this.value, streets); // finting matches and return them into a new Array
-console.log(matchArray) ;
-
-const html = matchArray.map(str => {
-  const regex = RegExp(this.value, 'gi');
-  const strHl = str.replace(regex, `<span class= "hl">${this.value}</span>`); //replacing normal chars with highlighted
-  return "<li><span class='name'>" + strHl + "</span></li>";
-}).join('');
-
-suggestions.innerHTML = html;
-}
-
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
-
-// Listening to seach field input
-searchInput.addEventListener('change', displayMatch);
-searchInput.addEventListener('keyup', displayMatch);
 
 
+  </script>
+</body>
 
-
-</script>
-  </body>
 </html>
