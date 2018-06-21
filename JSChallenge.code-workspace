@@ -71,6 +71,21 @@
 		},
 		{
 			"path": "24 - Sticky Nav"
+		},
+		{
+			"path": "26 - Stripe Follow Along Nav"
+		},
+		{
+			"path": "27 - Click and Drag"
+		},
+		{
+			"path": "28 - Video Speed Controller"
+		},
+		{
+			"path": "29 - Countdown Timer"
+		},
+		{
+			"path": "30 - Whack A Mole"
 		}
 	],
 	"settings": {
